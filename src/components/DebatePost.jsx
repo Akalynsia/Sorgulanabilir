@@ -27,10 +27,12 @@ Form çalışmıyor. Göreviniz, kullanıcı "Gönder "e tıkladığında gönde
 
   const handleUsernameChange = (event) => {
     setUsername(event.target.value);
+    console.log("Username:", event.target.value);
   };
 
   const handleCommentTextChange = (event) => {
     setCommentText(event.target.value);
+    console.log("Comment Text:", event.target.value);
   };
 
   const handleAnonymousChange = (event) => {
@@ -41,12 +43,14 @@ Form çalışmıyor. Göreviniz, kullanıcı "Gönder "e tıkladığında gönde
     event.preventDefault();
 
     if (!username || !commentText) {
+      console.log("Username or comment text cannot be empty");
       return;
     }
 
     const newComment = {
-      username: isAnonymous ? "AnonimKullanıcı" : username,
-      text: commentText,
+      id: crypto.randomUUID(),
+      userName: isAnonymous ? "AnonimKullanıcı" : username,
+      commentText: commentText,
     };
 
     setComments([...comments, newComment]);
